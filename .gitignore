@@ -1,1 +1,10 @@
 Finished/
+secure
+*.tfstate*
+*.lock*
+plan.out
+terraform-provider*
+**/.terraform/*
+.terraform
+*.tfstate
+*.tfstate.backup
