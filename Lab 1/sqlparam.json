@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sqladmin": {
+            "value": "u2uadmin"
+        },
+        "sqlpwd": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/a5a78344-f887-4c4e-aeed-8226f6a5c1e4/resourceGroups/klpih-u2u/providers/Microsoft.KeyVault/vaults/kv-klpih-u2u"
+                },
+                "secretName": "sqlpasswordas"
+            }
+        }
+    }
+}

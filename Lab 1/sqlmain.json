@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "SQLTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://saklpihu2u.blob.core.windows.net/armtemplates/sqltemplate.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://saklpihu2u.blob.core.windows.net/armtemplates/sqlparam.json",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        },
+        {
+            "name": "SQLDBTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://saklpihu2u.blob.core.windows.net/armtemplates/sqldbtemplate.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "sqlserver": {
+                        "value": "[reference('SQLTemplate').outputs.sqlservername.value]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments','SQLTemplate')]"
+            ]
+        }
+    ],
+    "outputs": {}
+}

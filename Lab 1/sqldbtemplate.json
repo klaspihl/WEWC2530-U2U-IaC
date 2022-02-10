@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sqlserver": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {
+        "dbname": "db",
+        "dbumber": 2
+    },
+    "resources": [
+        {
+            "name":
+                "[concat(parameters('sqlserver'),'/',variables('dbname'),copyindex())]",
+            "type": "Microsoft.Sql/servers/databases",
+            "apiVersion": "2014-04-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[concat(variables('dbname'),copyIndex())]"
+            },
+            "properties": {
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "edition": "Basic",
+                "maxSizeBytes": "1073741824",
+                "requestedServiceObjectiveName": "Basic"
+            },
+            "copy" : {
+                "name" : "dbcopy",
+                "count" :"[variables('dbumber')]"
+            }
+        }
+    ],
+    "outputs": {}
+}

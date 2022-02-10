@@ -1,0 +1,62 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sqladmin": {
+        "type": "string",
+        "defaultValue":"sqladmin",
+        "metadata": {
+            "description": "SQL admin account"
+        }
+    },
+    "sqlpwd": {
+        "type": "securestring",
+        "metadata": {
+            "description": "admin password"
+        }
+    }
+    },
+    "functions": [],    
+    "variables": {
+        "sqlSrv": "[concat('sql',uniqueString(resourceGroup().id))]",
+        "iprange": {
+            "startIP":"10.0.0.1",
+            "endIP":"10.0.0.20"
+        }
+        },
+    "resources": [{
+        "name": "[variables('sqlSrv')]",
+        "type": "Microsoft.Sql/servers",
+        "apiVersion": "2014-04-01",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "displayName": "[variables('sqlSrv')]",
+            "cost": "HP"
+        },
+        "properties": {
+            "administratorLogin": "[parameters('sqladmin')]",
+            "administratorLoginPassword": "[parameters('sqlpwd')]"
+        },
+        "resources": [
+            {
+                "type": "firewallRules",
+                "apiVersion": "2014-04-01",
+                "dependsOn": [
+                    "[resourceId('Microsoft.Sql/servers', variables('sqlSrv'))]"
+                ],
+                "location": "[resourceGroup().location]",
+                "name": "AllowAllWindowsAzureIps",
+                "properties": {
+                    "startIpAddress": "[variables('iprange').startIP]",
+                    "endIpAddress": "[variables('iprange').endIP]"
+                }
+            }
+        ]
+    }],
+    "outputs": {
+        "sqlservername": {
+            "type": "string",
+            "value": "[variables('sqlSrv')]"
+        }
+    }
+}
