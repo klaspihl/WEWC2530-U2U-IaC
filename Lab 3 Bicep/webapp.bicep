@@ -18,9 +18,9 @@ param appServicePlanSku object
 @description('The Azure region into which the resources should be deployed.')
 param location string = resourceGroup().location
 
-@secure()
+//@secure()
 @description('The administrator login username for the SQL server.')
-param sqlServerAdministratorLogin string
+param sqlServerAdministratorLogin string = 'U2U-AdminUser'
 @secure()
 @description('The administrator login password for the SQL server.')
 param sqlServerAdministratorPassword string
