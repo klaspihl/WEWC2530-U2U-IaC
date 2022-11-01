@@ -13,8 +13,8 @@ resource "azurerm_windows_virtual_machine" "VM-obj" {
   resource_group_name = azurerm_resource_group.ResourceGroup.name
   location            = var.location
   size                = var.Server.vm_size
-  admin_username      = module.AzureKeyVault.LocalAdministratorUser
-  admin_password      = module.AzureKeyVault.LocalAdministratorPassword
+  admin_username      = "adminPihl" #module.AzureKeyVault.LocalAdministratorUser
+  admin_password      = "S3cr3tP4ssw00rd!" #module.AzureKeyVault.LocalAdministratorPassword
   provision_vm_agent  = true
   timezone            = "W. Europe Standard Time"
   network_interface_ids = [
