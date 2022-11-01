@@ -35,10 +35,14 @@ resource "azurerm_windows_virtual_machine" "VM-obj" {
 
   tags = merge(
     var.default_tags,
-    map(
-      "StartDate", formatdate("YYYY-MM-DD hh:mm", timestamp()),
-      "ShutDown", var.Server.ShutDown
-    )
+    #map(
+    #  "StartDate", formatdate("YYYY-MM-DD hh:mm", timestamp()),
+    #  "ShutDown", var.Server.ShutDown
+    #)
+    tomap({
+      "StartDate"= formatdate("YYYY-MM-DD hh:mm", timestamp())
+      "ShutDown"= var.Server.ShutDown
+    })
   )
 
   lifecycle {
