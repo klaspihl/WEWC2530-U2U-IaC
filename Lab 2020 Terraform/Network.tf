@@ -5,9 +5,9 @@ resource "azurerm_network_security_group" "net-SG-obj" {
   resource_group_name = azurerm_resource_group.ResourceGroup.name
   tags = merge(
     var.default_tags,
-    map(
-      "StartDate", formatdate("YYYY-MM-DD hh:mm", timestamp())
-    )
+    tomap({
+      "StartDate"= formatdate("YYYY-MM-DD hh:mm", timestamp())
+})
   )
 
   lifecycle {
@@ -97,8 +97,8 @@ resource "azurerm_network_interface" "VMInterface" {
 
   tags = merge(
     var.default_tags,
-    map(
-      "StartDate", formatdate("YYYY-MM-DD hh:mm", timestamp())
+    tomap(
+      {"StartDate"= formatdate("YYYY-MM-DD hh:mm", timestamp())}
     )
   )
   lifecycle {
