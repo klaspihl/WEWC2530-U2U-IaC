@@ -37,7 +37,7 @@ output websiteHostNames array = [for index in range(0, length(locations)): app[i
 var sqlServerName = '${environmentName}-sql-bicep-lab-u2u'
 var sqlDatabaseName = 'Employees'
 
-module sql 'Modules/sqlserver-module.bicep' = if( environmentName != 'dev') {
+module sql 'Modules/sqlserver-module.bicep' = if( environmentName == 'dev') {
   name: sqlServerName
   params: {
     sqlDatabaseName: sqlDatabaseName

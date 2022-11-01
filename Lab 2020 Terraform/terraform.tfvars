@@ -1,5 +1,5 @@
-subscriptionID = "8332bda4-0051-4602-9ab3-42fae7294d3d"
-location = "westeurope" #"eastus" #West Europe
+subscriptionID = "a5a78344-f887-4c4e-aeed-8226f6a5c1e4"
+location = "northeurope" #"eastus" #West Europe
 system = "TerraLab"
 ServerName = "pihl-lab"
 Server = {
@@ -13,7 +13,7 @@ Server = {
 }
 ImportedResources = {
     ResourceGroup = "Lab"
-    VNET = "pihl-privat-vpn"
-    VNETResourceGroup = "pihl-privat"
+    VNET = "klpih-lab-vnet"
+    VNETResourceGroup = "klpih-lab"
     Subnet = "lab"
 }
