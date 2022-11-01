@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "ResourceGroup" {
 
   tags = merge(
       var.default_tags,
-      map(
+      tomap(
         "StartDate", formatdate("YYYY-MM-DD hh:mm", timestamp())
         )
       )

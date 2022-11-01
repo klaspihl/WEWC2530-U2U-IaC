@@ -1,7 +1,7 @@
 resource "random_string" "PasswordString" {
   length      = 8
   special     = false
-  number      = true
+  numeric      = true
   min_numeric = 5
 }
 
