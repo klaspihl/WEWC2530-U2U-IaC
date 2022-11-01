@@ -1,5 +1,5 @@
 subscriptionID = "a5a78344-f887-4c4e-aeed-8226f6a5c1e4"
-location = "northeurope" #"eastus" #West Europe
+location = "westeurope" #"eastus" #West Europe
 system = "TerraLab"
 ServerName = "pihl-lab"
 Server = {
