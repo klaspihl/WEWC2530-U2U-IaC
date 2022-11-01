@@ -1,4 +1,4 @@
-#az login --tenant "65f51067-7d65-4aa9-b996-4cc43a0d7111"
+#az login --tenant "b053bf6c-6698-459d-ad76-2130d86dcfbb"
 provider "azurerm" {
     version = "=2.0.0"
     features {}
@@ -6,7 +6,7 @@ provider "azurerm" {
     #CLIENT_ID="f01bc3ef-e7b3-413d-b8e2-45266111dbb4"
     #CLIENT_SECRET="PXhHz/WZ.32lG6b1lOkQ_ze:bEY[V]cB"
     #SUBSCRIPTION_ID = var.subscriptionID
-    #TENANT_ID="65f51067-7d65-4aa9-b996-4cc43a0d7111"
+    #TENANT_ID="b053bf6c-6698-459d-ad76-2130d86dcfbb"
 }
 module "AzureKeyVault" {
   source = "./modules/AzureKeyVault"
